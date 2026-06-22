@@ -111,6 +111,23 @@
     .hai-glossary { padding:2rem 1.1rem 2.5rem; }
     .hai-glossary h1.hg-title { font-size:1.8rem; }
   }
+
+  /* ── Back-to-top floating button ──────────────────────────────────────── */
+  .hai-glossary .hg-totop {
+    position:fixed; right:24px; bottom:24px; width:48px; height:48px;
+    display:flex; align-items:center; justify-content:center;
+    border:none; border-radius:50%; background:var(--teal); color:#fff;
+    font-size:22px; line-height:1; cursor:pointer;
+    box-shadow:0 4px 14px rgba(12,30,30,0.28);
+    opacity:0; visibility:hidden; transform:translateY(10px);
+    transition:opacity 200ms, transform 200ms, background 150ms; z-index:60;
+  }
+  .hai-glossary .hg-totop.is-visible { opacity:1; visibility:visible; transform:none; }
+  .hai-glossary .hg-totop:hover { background:var(--teal-dark); }
+  .hai-glossary .hg-totop:focus-visible { outline:2px solid var(--teal-dark); outline-offset:3px; }
+  @media (max-width:600px){
+    .hai-glossary .hg-totop { right:16px; bottom:16px; width:44px; height:44px; }
+  }
   </style>
 </head>
 <body>
@@ -416,7 +433,21 @@
     <p>To discuss clinical coding, CDI or discharge-summary quality for an Australian hospital, contact Healthful AI at <a href="mailto:james@healthfulai.com.au">james@healthfulai.com.au</a>. James Oakes personally responds to all initial enquiries within one business day.</p>
   </div>
 
+  <button class="hg-totop" type="button" aria-label="Back to top" title="Back to top">↑</button>
+
 </div>
 <!-- ── End Healthful AI Clinical coding and CDI glossary ───────────────────── -->
+<script>
+(function () {
+  var btn = document.querySelector('.hai-glossary .hg-totop');
+  if (!btn) return;
+  function toggle() { btn.classList.toggle('is-visible', window.pageYOffset > 400); }
+  window.addEventListener('scroll', toggle, { passive: true });
+  toggle();
+  btn.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+</script>
 </body>
 </html>
