@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clinical coding and CDI glossary for Australian hospitals | Healthful AI</title>
+  <meta name="description" content="Plain-English definitions of the clinical coding, CDI and hospital-funding terms used across Australian hospitals — ICD-10-AM, ACHI, ACS, AR-DRG, ABF, HAC and more.">
+  <link rel="canonical" href="https://glossary.healthfulai.com.au/">
+  <style>
+  /* ── Healthful AI design tokens (scoped) ──────────────────────────────────── */
+  .hai-glossary {
+    --teal:#1E9E9E; --teal-dark:#157A7A; --teal-mid:#24B8B8; --teal-light:#C8ECEC; --teal-pale:#E8F8F8;
+    --green:#4A9B35; --green-dark:#357226; --green-light:#B8E8A0; --green-pale:#E8F6E0;
+    --blue:#3F65B5; --blue-dark:#2D4A8A; --blue-light:#B0C4E8; --blue-pale:#E8EEF8;
+    --pink:#E8399A; --pink-dark:#B5207A; --pink-light:#F4A0D0; --pink-pale:#FCE8F4;
+    --dark:#0C1E1E; --ink:#172828; --ink-mid:#3A5252; --ink-light:#7A9898;
+    --border:#C4E0E0; --bg:#F4FCFC; --white:#FFFFFF;
+  
+    --color-primary:var(--teal); --color-primary-strong:var(--teal-dark); --color-primary-soft:var(--teal-pale);
+    --fg-1:var(--dark); --fg-2:var(--ink); --fg-3:var(--ink-mid); --fg-4:var(--ink-light);
+    --bg-page:var(--bg); --bg-surface:var(--white); --stroke:var(--border);
+  
+    /* Web-safe fallback stacks only — no external font requests (CMS-safe) */
+    --font-head:'Plus Jakarta Sans','Helvetica Neue',Arial,sans-serif;
+    --font-body:'Inter','Helvetica Neue',Arial,sans-serif;
+    --font-mono:'DM Mono','Courier New',monospace;
+  
+    --radius-xs:4px; --radius-sm:6px; --radius-md:8px; --radius-lg:10px; --radius-xl:12px; --radius-pill:99px;
+    --gradient-horizon-h:linear-gradient(90deg,transparent 0%,var(--green) 20%,var(--teal) 45%,var(--blue) 70%,var(--pink) 85%,transparent 100%);
+  
+    box-sizing:border-box;
+    font-family:var(--font-body);
+    color:var(--fg-2);
+    background:var(--bg-page);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    max-width:960px;
+    margin:0 auto;
+    padding:2.5rem 1.5rem 3rem;
+  }
+  .hai-glossary *, .hai-glossary *::before, .hai-glossary *::after { box-sizing:border-box; }
+  
+  /* ── Header ───────────────────────────────────────────────────────────────── */
+  .hai-glossary .hg-eyebrow {
+    font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.16em;
+    text-transform:uppercase; color:var(--color-primary); margin:0 0 0.75rem;
+  }
+  .hai-glossary h1.hg-title {
+    font-family:var(--font-head); color:var(--fg-1); font-weight:800;
+    font-size:clamp(2rem,4.5vw,3rem); line-height:1.08; letter-spacing:-0.025em; margin:0 0 1rem;
+  }
+  .hai-glossary .hg-intro { color:var(--fg-3); font-size:16.5px; line-height:1.7; margin:0 0 1rem; }
+  .hai-glossary .hg-intro a { color:var(--color-primary-strong); text-decoration:none; border-bottom:1px solid var(--teal-light); }
+  .hai-glossary .hg-intro a:hover { color:var(--color-primary); border-bottom-color:var(--teal); }
+  .hai-glossary .hg-rule { height:5px; border:none; border-radius:99px; background:var(--gradient-horizon-h); margin:1.75rem 0; }
+  
+  /* ── Jump nav (A–Z) ───────────────────────────────────────────────────────── */
+  .hai-glossary .hg-nav {
+    background:var(--white); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:1.25rem 1.5rem; margin:0 0 2.5rem;
+  }
+  .hai-glossary .hg-nav-label {
+    font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--color-primary); margin:0 0 0.85rem;
+  }
+  .hai-glossary .hg-nav-list { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:0.4rem 0.5rem; }
+  .hai-glossary .hg-nav-list a {
+    display:inline-block; font-size:13px; line-height:1.3; text-decoration:none;
+    color:var(--teal-dark); background:var(--teal-pale); border:1px solid var(--teal-light);
+    padding:4px 10px; border-radius:var(--radius-pill); transition:border-color 150ms,background 150ms;
+  }
+  .hai-glossary .hg-nav-list a:hover { border-color:var(--teal); background:var(--teal-light); }
+  
+  /* ── Letter group headings ────────────────────────────────────────────────── */
+  .hai-glossary .hg-letter {
+    font-family:var(--font-head); font-weight:800; color:var(--teal);
+    font-size:1.5rem; letter-spacing:-0.02em; margin:2.5rem 0 0.5rem; padding-bottom:0.4rem;
+    border-bottom:2px solid var(--teal-light);
+  }
+  .hai-glossary .hg-letter:first-of-type { margin-top:0; }
+  
+  /* ── Term entries ─────────────────────────────────────────────────────────── */
+  .hai-glossary .hg-term { padding:1.5rem 0; border-bottom:1px solid var(--border); }
+  .hai-glossary .hg-term:last-child { border-bottom:none; }
+  .hai-glossary h3.hg-term-title {
+    font-family:var(--font-head); font-weight:700; color:var(--fg-1);
+    font-size:1.18rem; line-height:1.25; letter-spacing:-0.02em; margin:0 0 0.6rem;
+    scroll-margin-top:90px; /* keeps anchor target clear of sticky site headers */
+  }
+  .hai-glossary .hg-term p { color:var(--fg-3); line-height:1.7; margin:0; font-size:15px; }
+  .hai-glossary .hg-term p + p { margin-top:0.75rem; }
+  .hai-glossary .hg-why {
+    margin-top:0.85rem; padding:0.75rem 1rem; background:var(--teal-pale);
+    border-left:3px solid var(--teal); border-radius:var(--radius-sm); font-size:14.5px; color:var(--ink-mid);
+  }
+  .hai-glossary .hg-why em { font-style:normal; font-weight:600; color:var(--teal-dark); }
+  .hai-glossary code, .hai-glossary .hg-code {
+    font-family:var(--font-mono); font-size:0.9em; background:var(--teal-pale);
+    color:var(--teal-dark); padding:1px 5px; border-radius:var(--radius-xs);
+  }
+  
+  /* ── Footer / closing notes ───────────────────────────────────────────────── */
+  .hai-glossary .hg-footer { margin-top:2.5rem; padding-top:1.75rem; border-top:1px solid var(--border); }
+  .hai-glossary .hg-footer p { color:var(--fg-4); font-size:13px; line-height:1.65; font-style:italic; margin:0 0 0.75rem; }
+  .hai-glossary .hg-footer p:last-child { margin-bottom:0; }
+  .hai-glossary .hg-footer a { color:var(--color-primary-strong); text-decoration:none; border-bottom:1px solid var(--teal-light); }
+  .hai-glossary .hg-footer a:hover { color:var(--color-primary); }
+  
+  @media (max-width:600px){
+    .hai-glossary { padding:2rem 1.1rem 2.5rem; }
+    .hai-glossary h1.hg-title { font-size:1.8rem; }
+  }
+  </style>
+</head>
+<body>
+<!-- ============================================================================
+     Healthful AI — Clinical coding and CDI glossary
+     Paste-ready HTML block for GoDaddy Websites + Marketing (Section → HTML / Custom code).
+     Self-contained: all CSS scoped under .hai-glossary in one <style> block.
+     No external JS, no external font/image requests (web-safe font fallbacks only).
+     Brand tokens embedded verbatim from healthful-ai-design/colors_and_type.css.
+     Per-term anchor IDs match terms-list.md EXACTLY — 36 terms, A–Z.
+     ============================================================================ -->
+<div class="hai-glossary">
+
+  <p class="hg-eyebrow">Reference</p>
+  <h1 class="hg-title">Clinical coding and CDI glossary</h1>
+  <p class="hg-intro">Hospital coding and funding comes with a lot of acronyms, and the same term can mean slightly different things to a clinician, a coder and a finance team. This glossary explains the most common ones in plain English, set in the Australian hospital context.</p>
+  <p class="hg-intro">Each entry gives a short, plain-English definition and, where it helps, a note on why the term matters. Terms are listed A–Z — use the list below to jump to the one you need.</p>
+  <p class="hg-intro">For the full picture of how these pieces fit together, see the pillar guide: <a href="/clinical-coding-australia">AI clinical coding and documentation for Australian hospitals</a>.</p>
+
+  <hr class="hg-rule">
+
+  <!-- ── Jump nav (A–Z) ─────────────────────────────────────────────────── -->
+  <nav class="hg-nav" aria-label="Glossary term jump navigation">
+    <p class="hg-nav-label">Jump to a term</p>
+    <ul class="hg-nav-list">
+      <li><a href="#abf">ABF</a></li>
+      <li><a href="#achi">ACHI</a></li>
+      <li><a href="#acs">ACS</a></li>
+      <li><a href="#ar-drg">AR-DRG</a></li>
+      <li><a href="#autonomous-coding">Autonomous coding</a></li>
+      <li><a href="#cac">CAC</a></li>
+      <li><a href="#case-mix-index">Case-mix index</a></li>
+      <li><a href="#cc-mcc">CC/MCC</a></li>
+      <li><a href="#cdi">CDI</a></li>
+      <li><a href="#cdi-specialist">CDI specialist</a></li>
+      <li><a href="#clinical-coder">Clinical coder</a></li>
+      <li><a href="#clinical-coding">Clinical coding</a></li>
+      <li><a href="#coding-query">Coding query</a></li>
+      <li><a href="#comorbidity">Comorbidity</a></li>
+      <li><a href="#complication">Complication</a></li>
+      <li><a href="#concurrent-review">Concurrent review</a></li>
+      <li><a href="#condition-onset-flag">Condition onset flag</a></li>
+      <li><a href="#discharge-summary">Discharge summary</a></li>
+      <li><a href="#drg">DRG</a></li>
+      <li><a href="#fhir">FHIR</a></li>
+      <li><a href="#first-pass-coding-accuracy">First-pass coding accuracy</a></li>
+      <li><a href="#hac">HAC</a></li>
+      <li><a href="#him">HIM</a></li>
+      <li><a href="#icd-10-am">ICD-10-AM</a></li>
+      <li><a href="#icd-10-am-edition">ICD-10-AM edition</a></li>
+      <li><a href="#ihacpa">IHACPA</a></li>
+      <li><a href="#llm">LLM</a></li>
+      <li><a href="#national-efficient-price">National Efficient Price</a></li>
+      <li><a href="#pas-emr">PAS / EMR</a></li>
+      <li><a href="#point-of-care-cdi">Point-of-care CDI</a></li>
+      <li><a href="#qa">QA</a></li>
+      <li><a href="#rag">RAG</a></li>
+      <li><a href="#real-time-cdi">Real-time CDI</a></li>
+      <li><a href="#retrospective-cdi">Retrospective CDI</a></li>
+      <li><a href="#revenue-integrity">Revenue integrity</a></li>
+      <li><a href="#semi-autonomous-coding">Semi-autonomous coding</a></li>
+    </ul>
+  </nav>
+
+  <!-- ══ A ════════════════════════════════════════════════════════════════ -->
+  <h2 class="hg-letter">A</h2>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="abf">ABF (activity-based funding)</h3>
+    <p>The funding model under which Australian public hospitals are paid for admitted episodes by activity rather than by block grant. Each episode is assigned an AR-DRG, and the AR-DRG's cost weight determines the payment. ABF operates under the National Health Reform Agreement.</p>
+    <div class="hg-why"><em>Why it matters:</em> under ABF, an episode is funded on what was coded, not simply on what was done. Documentation that is incomplete at the time of coding can group an episode to a lower-weighted DRG, so the hospital is funded for less than the care it delivered. This is why coding accuracy is a revenue-integrity question, not an administrative one.</div>
+  </div>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="achi">ACHI (Australian Classification of Health Interventions)</h3>
+    <p>Australia's national classification for procedures and health interventions — the procedure counterpart to ICD-10-AM, which classifies diagnoses. ACHI codes are assigned by a clinical coder for every relevant procedure in an episode. ACHI is maintained by IHACPA and updated with each new edition.</p>
+  </div>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="acs">ACS (Australian Coding Standards)</h3>
+    <p>The binding rules that govern how ICD-10-AM and ACHI codes are assigned: which codes apply, in what sequence, under which clinical conditions, and how ambiguous or complex documentation should be coded. The ACS are a distinctly Australian layer of rules sitting on top of the base classification, maintained by IHACPA and revised with each edition. They are not optional guidance — they are the rules for clinical coding in Australian hospitals.</p>
+    <div class="hg-why"><em>Why it matters:</em> a coder can apply the ACS only to what is documented in the record. The ACS define the level of specificity a complication or comorbidity needs before it can be coded, which is where documentation quality and coding accuracy meet.</div>
+  </div>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="ar-drg">AR-DRG (Australian Refined Diagnosis Related Group)</h3>
+    <p>A classification that groups inpatient episodes into clinically meaningful, resource-similar categories for funding purposes. An episode's ICD-10-AM and ACHI codes are processed through grouper software, which assigns the episode to a single AR-DRG. Each AR-DRG carries an assigned cost weight used in the ABF payment calculation. AR-DRGs are maintained by IHACPA.</p>
+    <div class="hg-why"><em>Why it matters:</em> the same principal diagnosis with documented comorbidities and complications groups to a higher-weighted AR-DRG than the same diagnosis without them. There is no discretion in the grouping — the codes go in and the DRG comes out — so the completeness of the documentation that sits behind the codes determines the funding.</div>
+  </div>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="autonomous-coding">Autonomous coding</h3>
+    <p>Software that assigns clinical codes without mandatory human review of each episode. Under a fully autonomous model, the system codes the episode, the episode is finalised, and a human reviewer sees the output only in aggregate or on exception. Technically feasible for well-defined, lower-complexity episode types; in practice, most live deployments described as "autonomous" operate as hybrid systems that code high-confidence episodes and route uncertain or complex cases to a human coder.</p>
+    <div class="hg-why"><em>Why it matters:</em> the hospital remains accountable for the accuracy of its ABF claims regardless of how codes were assigned. The distinction between autonomous, hybrid and computer-assisted coding determines who reviews each episode and what governance and audit trail are required.</div>
+  </div>
+
+  <!-- ══ C ════════════════════════════════════════════════════════════════ -->
+  <h2 class="hg-letter">C</h2>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="cac">CAC (computer-assisted coding)</h3>
+    <p>Software that uses natural-language processing to read clinical documentation and suggest ICD-10-AM and ACHI codes for a human coder to review. The coder accepts or amends each suggestion and remains responsible for the final code set. CAC is a decision-support tool: it speeds the coder up and improves consistency without removing their judgement.</p>
+  </div>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="case-mix-index">Case-mix index</h3>
+    <p>An aggregate measure of the relative resource intensity of a hospital's mix of episodes, derived from the cost weights of the AR-DRGs the hospital records. A higher case-mix index reflects a more complex, resource-intensive episode mix.</p>
+    <div class="hg-why"><em>Why it matters:</em> consistent under-documentation suppresses the case-mix index below the level that accurately reflects clinical activity. A CDI programme that improves documentation completeness will, over time, produce a case-mix index that better represents the complexity of care delivered.</div>
+  </div>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="cc-mcc">CC/MCC (complication or comorbidity / major complication or comorbidity)</h3>
+    <p>The general principle that an episode's additional diagnoses — its complications and comorbidities — can raise the resource weight of the group it falls into. A documented complication or comorbidity, and especially a major one, can move an episode to a higher-weighted category than the principal diagnosis alone would warrant. In the Australian system this effect is expressed through AR-DRG grouping and the episode complexity that feeds it.</p>
+    <div class="hg-why"><em>Why it matters:</em> an undocumented or under-specified complication or comorbidity is the most common way an episode is funded for less than the care delivered.</div>
+  </div>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="cdi">CDI (clinical documentation improvement)</h3>
+    <p>The discipline of ensuring clinical documentation is complete, accurate, and specific enough to support accurate coding and funding. CDI can be concurrent — carried out during the episode of care — or retrospective, carried out after discharge. Its core work is identifying documentation gaps and resolving them, usually through a query to the treating clinician.</p>
+    <div class="hg-why"><em>Why it matters:</em> CDI is not coding. Coding assigns codes to a completed record; CDI is the work that ensures the record is complete and specific enough for that coding to be accurate in the first place.</div>
+  </div>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="cdi-specialist">CDI specialist</h3>
+    <p>The professional who carries out clinical documentation improvement: reviewing active records for documentation gaps, raising queries to clinicians, and working across the clinical teams who document and the coding teams who code. A CDI specialist must be fluent in both clinical documentation and coding classification, which makes the role distinct from both bedside care and clinical coding.</p>
+  </div>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="clinical-coder">Clinical coder</h3>
+    <p>A trained health information specialist who reads an episode of care and assigns standardised codes — ICD-10-AM for diagnoses, ACHI for procedures — under the Australian Coding Standards. In Australia, clinical coders typically hold a qualification in health information management and must maintain competency as classification standards and editions change.</p>
+  </div>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="clinical-coding">Clinical coding</h3>
+    <p>The process of reading an episode of care — discharge summaries, operation reports, pathology, imaging — and assigning standardised codes that describe every diagnosis and procedure. Diagnoses are coded in ICD-10-AM and procedures in ACHI, under the ACS. Coded data drives funding, national statistics and clinical research, which is why coding accuracy is treated as revenue integrity rather than an administrative task.</p>
+  </div>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="coding-query">Coding query</h3>
+    <p>A question raised by a coder or CDI specialist to the treating clinician, asking for clarification or additional detail when the record is ambiguous or incomplete. A query is a request to document what happened more completely — not a request to change what happened. Queries can be concurrent (during the episode) or retrospective (after discharge).</p>
+    <div class="hg-why"><em>Why it matters:</em> a retrospective query asks a clinician to recall an episode that may be weeks in the past. Many are answered slowly, with insufficient detail, or not at all — each unanswered query is a documentation gap that was identified but never resolved.</div>
+  </div>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="comorbidity">Comorbidity</h3>
+    <p>A condition a patient has alongside the principal diagnosis for an episode — for example, diabetes or chronic kidney disease present during an admission for something else. When documented and coded, a comorbidity can raise the episode's AR-DRG weight, because it reflects the additional resources the care required.</p>
+    <div class="hg-why"><em>Why it matters:</em> a comorbidity that is present but not documented cannot be coded, so the episode groups as though the comorbidity were absent.</div>
+  </div>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="complication">Complication</h3>
+    <p>A condition that arises during, or as a consequence of, an episode of care — for example, a post-operative infection or a fall during the stay. Whether a complication is coded depends on it being documented with enough specificity, and on whether its onset is clearly recorded (see condition onset flag).</p>
+  </div>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="concurrent-review">Concurrent review</h3>
+    <p>The review of active clinical records — typically inpatient episodes — to identify documentation gaps while the patient is still admitted, rather than after the episode has closed. Concurrent review is the point-of-care alternative to retrospective query work, and it is where real-time CDI tools focus.</p>
+  </div>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="condition-onset-flag">Condition onset flag</h3>
+    <p>The indicator of whether a diagnosis was present on admission or arose during the hospital stay. This single distinction determines whether a condition is treated as a hospital-acquired complication, and it relies entirely on what the clinical note records.</p>
+    <div class="hg-why"><em>Why it matters:</em> when onset is not documented clearly, the coder cannot infer it safely — which can both misattribute a complication in the safety data and change the funding adjustment that applies.</div>
+  </div>
+
+  <!-- ══ D ════════════════════════════════════════════════════════════════ -->
+  <h2 class="hg-letter">D</h2>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="discharge-summary">Discharge summary</h3>
+    <p>The final clinical document produced before a patient leaves hospital. It carries the patient's hospital story — diagnoses, procedures, medication changes and follow-up plan — to the GP or community team who care for them next, and it is the primary document from which an episode is coded.</p>
+    <div class="hg-why"><em>Why it matters:</em> the completeness and specificity of the discharge summary directly determines what can be coded. When it is incomplete or inaccurate, the information gap can cause real patient harm at the point of handover and leave the episode under-coded.</div>
+  </div>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="drg">DRG (diagnosis related group)</h3>
+    <p>The general concept of grouping inpatient episodes into clinically meaningful, resource-similar categories for funding and comparison. In Australia, the specific grouping system used is the AR-DRG.</p>
+  </div>
+
+  <!-- ══ F ════════════════════════════════════════════════════════════════ -->
+  <h2 class="hg-letter">F</h2>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="fhir">FHIR (HL7 FHIR R4 — Health Level Seven Fast Healthcare Interoperability Resources, Release 4)</h3>
+    <p>An international standard for exchanging healthcare data between systems in a structured form. Healthful AI's products are built around HL7 FHIR R4, which is one of the standard interfaces Australian hospitals already use.</p>
+    <div class="hg-why"><em>Why it matters:</em> integrating a coding or CDI tool through a standard interface such as FHIR is lower risk than building bespoke connectors, and it is one of the integration questions a HIM manager should put to any vendor.</div>
+  </div>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="first-pass-coding-accuracy">First-pass coding accuracy</h3>
+    <p>The proportion of episodes coded correctly without later amendment. It is the single metric that most honestly reflects a coding department's efficiency: low first-pass accuracy means audits, resubmissions and corrections downstream.</p>
+    <div class="hg-why"><em>Why it matters:</em> the most direct way to improve first-pass accuracy is to improve documentation completeness before the first pass happens — which is the operational case for real-time CDI.</div>
+  </div>
+
+  <!-- ══ H ════════════════════════════════════════════════════════════════ -->
+  <h2 class="hg-letter">H</h2>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="hac">HAC (hospital-acquired complication)</h3>
+    <p>One of 16 high-priority complications identified by a Joint Working Party of the Australian Commission on Safety and Quality in Health Care (ACSQHC) and IHACPA as amenable to risk-mitigation strategies. Examples include falls resulting in fracture, healthcare-associated infections and pressure injuries. A HAC carries a funding adjustment under ABF and serves as a patient-safety signal.</p>
+    <div class="hg-why"><em>Why it matters:</em> a HAC is only counted if it is documented and coded. Under-documentation hides a safety signal the hospital needs to act on; inaccurate documentation — particularly around condition onset — can misattribute a complication, distorting both the safety picture and the funding adjustment.</div>
+  </div>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="him">HIM (health information management)</h3>
+    <p>The profession and hospital function responsible for the integrity, accuracy and governance of clinical information — including clinical coding, documentation quality and the data hospitals submit for funding and reporting. Clinical coders and CDI specialists typically sit within the HIM function, led by a HIM manager.</p>
+  </div>
+
+  <!-- ══ I ════════════════════════════════════════════════════════════════ -->
+  <h2 class="hg-letter">I</h2>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="icd-10-am">ICD-10-AM (International Statistical Classification of Diseases and Related Health Problems, 10th Revision, Australian Modification)</h3>
+    <p>Australia's national clinical classification for diagnoses in admitted patient settings. It is an Australian modification of the World Health Organization's ICD-10 base classification, with added codes, revised definitions and the ACS layered on top. ICD-10-AM is used alongside ACHI for episode coding and is maintained by IHACPA. The current edition is the 13th, implemented on 1 July 2025.</p>
+    <div class="hg-why"><em>Why it matters:</em> the Australian modification is substantive, not cosmetic — ICD-10-AM includes codes and rules with no direct equivalent in the US (ICD-10-CM) or WHO versions. A coding tool adapted from an overseas classification is not the same as one built for ICD-10-AM and the ACS.</div>
+  </div>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="icd-10-am-edition">ICD-10-AM edition</h3>
+    <p>ICD-10-AM, ACHI and the ACS are updated together in numbered editions. Each new edition adds and revises codes, changes some code definitions, and revises the ACS. Australia is on the 13th edition, implemented on 1 July 2025. An edition change is a material event: it requires coder retraining on changed rules and an update to every reference tool and coding system.</p>
+    <div class="hg-why"><em>Why it matters:</em> coding software that lags an edition change will suggest codes and apply ACS rules from a previous edition, which can produce technically non-compliant code sets. Current-edition support is a threshold procurement criterion for any coding AI, not a nice-to-have.</div>
+  </div>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="ihacpa">IHACPA (Independent Health and Aged Care Pricing Authority)</h3>
+    <p>The national authority responsible for pricing public hospital services and for maintaining the classifications behind ABF — ICD-10-AM, ACHI, the ACS and the AR-DRGs. IHACPA publishes the annual National Efficient Price and conducts pricing and validation work. Maintenance of these classifications was historically the responsibility of the Australian Institute of Health and Welfare (AIHW) and transferred to IHACPA when that authority was established.</p>
+  </div>
+
+  <!-- ══ L ════════════════════════════════════════════════════════════════ -->
+  <h2 class="hg-letter">L</h2>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="llm">LLM (large language model)</h3>
+    <p>A type of AI model trained on large volumes of text, increasingly used to help draft clinical documents such as discharge summaries. LLM-drafted summaries can contain hallucinated content — plausible-sounding detail not supported by the record — or omit clinically relevant information.</p>
+    <div class="hg-why"><em>Why it matters:</em> this failure mode is precisely what discharge-summary quality assurance, and hallucination detection in particular, is designed to catch before a summary reaches the GP.</div>
+  </div>
+
+  <!-- ══ N ════════════════════════════════════════════════════════════════ -->
+  <h2 class="hg-letter">N</h2>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="national-efficient-price">National Efficient Price</h3>
+    <p>The price IHACPA publishes each year as the basis for ABF payments. In simplified terms, a hospital's payment for an episode is the National Efficient Price multiplied by the episode's AR-DRG cost weight, adjusted for patient complexity, hospital peer group and other loading factors.</p>
+  </div>
+
+  <!-- ══ P ════════════════════════════════════════════════════════════════ -->
+  <h2 class="hg-letter">P</h2>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="pas-emr">PAS / EMR (patient administration system / electronic medical record)</h3>
+    <p>The core hospital systems clinicians and coders already work in. The PAS manages patient and episode administration; the EMR holds the clinical record. A documentation or coding tool that integrates with the existing PAS and EMR — rather than requiring a separate login or manual uploads — adds far less friction to the workflow.</p>
+  </div>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="point-of-care-cdi">Point-of-care CDI</h3>
+    <p>CDI carried out at the point of care — during the episode, in the system the clinician is already using — rather than retrospectively after discharge. A documentation gap identified while the patient is still in the ward can be resolved in seconds, before the record is ever coded. This is the principle behind real-time CDI and tools such as Falcon.</p>
+    <div class="hg-why"><em>Why it matters:</em> "the point of care" is where a documentation gap is cheapest and most accurately closed. The same gap, raised as a retrospective query weeks later, is a harder and less reliable process.</div>
+  </div>
+
+  <!-- ══ Q ════════════════════════════════════════════════════════════════ -->
+  <h2 class="hg-letter">Q</h2>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="qa">QA (quality assurance)</h3>
+    <p>In the discharge-summary context, the process of checking each summary before it leaves the hospital: forward QA checks whether the summary contains what it should (completeness), reverse QA verifies that what it contains is supported by the patient record (consistency), and the summary is scored. Done by hand this is impossibly slow at scale; done with AI it can run on every summary rather than an annual audit sample. This is the approach Horizon is being built around.</p>
+  </div>
+
+  <!-- ══ R ════════════════════════════════════════════════════════════════ -->
+  <h2 class="hg-letter">R</h2>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="rag">RAG (retrieval-augmented generation)</h3>
+    <p>An AI technique that grounds a model's output in retrieved source material rather than relying on the model's training alone. It is one of the methods used in semi-autonomous coding to tie code suggestions back to the relevant classification and clinical record.</p>
+  </div>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="real-time-cdi">Real-time CDI</h3>
+    <p>Clinical documentation improvement that prompts the treating clinician during the episode of care rather than chasing gaps after discharge — fixing the record at the source while the detail is still fresh. Real-time CDI is the operational alternative to retrospective query work and is the principle Falcon CDI is built around.</p>
+    <div class="hg-why"><em>Why it matters:</em> moving the documentation check to during the episode means most retrospective rework never happens. The coder receives a chart that already contains the onset flag, comorbidity specificity and complication detail, so first-pass accuracy improves because the input to the first pass is better.</div>
+  </div>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="retrospective-cdi">Retrospective CDI</h3>
+    <p>Clinical documentation improvement carried out after the episode has closed: a coder or CDI specialist identifies a gap and raises a query to the clinician days or weeks later. It is the traditional model of CDI, and its limitations — query fatigue, delayed feedback and incomplete uptake — are problems of timing rather than effort.</p>
+  </div>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="revenue-integrity">Revenue integrity</h3>
+    <p>The principle that a hospital is funded accurately for the care it actually delivered — no more and no less — and that its coded claims will hold up to audit. Under ABF, revenue integrity depends on documentation that is complete and specific at the time of coding, so that episodes group to the appropriate DRG weight on the first pass without retrospective correction.</p>
+  </div>
+
+  <!-- ══ S ════════════════════════════════════════════════════════════════ -->
+  <h2 class="hg-letter">S</h2>
+
+  <div class="hg-term">
+    <h3 class="hg-term-title" id="semi-autonomous-coding">Semi-autonomous coding</h3>
+    <p>A coding model in which software codes straightforward episodes and routes complex or uncertain cases to a human coder, who retains review authority over every episode before any code set is finalised. It sits between computer-assisted coding and fully autonomous coding on the spectrum, concentrating scarce coder expertise where it adds the most value. This is the model behind Luna, Healthful AI's coding platform in development.</p>
+  </div>
+
+  <!-- ══ Footer ═══════════════════════════════════════════════════════════ -->
+  <div class="hg-footer">
+    <p>This glossary is a living reference and is updated as classifications and editions change. Confirm the current ICD-10-AM/ACHI/ACS edition and the HAC list and funding-adjustment methodology against the latest IHACPA determination before relying on any figure for a funding decision.</p>
+    <p>To discuss clinical coding, CDI or discharge-summary quality for an Australian hospital, contact Healthful AI at <a href="mailto:james@healthfulai.com.au">james@healthfulai.com.au</a>. James Oakes personally responds to all initial enquiries within one business day.</p>
+  </div>
+
+</div>
+<!-- ── End Healthful AI Clinical coding and CDI glossary ───────────────────── -->
+</body>
+</html>
