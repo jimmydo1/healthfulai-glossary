@@ -128,6 +128,26 @@
   @media (max-width:600px){
     .hai-glossary .hg-totop { right:16px; bottom:16px; width:44px; height:44px; }
   }
+
+  /* ── Top bar (logo home link + back to site) ──────────────────────────── */
+  .hai-glossary .hg-topbar {
+    display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    margin:0 0 2rem; padding-bottom:1.25rem; border-bottom:1px solid var(--border);
+  }
+  .hai-glossary .hg-home { display:inline-flex; }
+  .hai-glossary .hg-home img { height:34px; width:auto; display:block; }
+  .hai-glossary .hg-back {
+    font-family:var(--font-mono); font-size:12px; letter-spacing:0.04em;
+    text-decoration:none; color:var(--teal-dark); white-space:nowrap;
+    border:1px solid var(--teal-light); background:var(--teal-pale);
+    padding:6px 13px; border-radius:var(--radius-pill);
+    transition:border-color 150ms, background 150ms;
+  }
+  .hai-glossary .hg-back:hover { border-color:var(--teal); background:var(--teal-light); }
+  @media (max-width:600px){
+    .hai-glossary .hg-topbar { flex-wrap:wrap; gap:0.75rem; }
+    .hai-glossary .hg-home img { height:28px; }
+  }
   </style>
 </head>
 <body>
@@ -141,6 +161,10 @@
      ============================================================================ -->
 <div class="hai-glossary">
 
+  <header class="hg-topbar">
+    <a class="hg-home" href="https://healthfulai.com.au" aria-label="Healthful AI home"><img src="logo-healthful.png" alt="Healthful AI"></a>
+    <a class="hg-back" href="https://healthfulai.com.au">← Back to healthfulai.com.au</a>
+  </header>
   <p class="hg-eyebrow">Reference</p>
   <h1 class="hg-title">Clinical coding and CDI glossary</h1>
   <p class="hg-intro">Hospital coding and funding comes with a lot of acronyms, and the same term can mean slightly different things to a clinician, a coder and a finance team. This glossary explains the most common ones in plain English, set in the Australian hospital context.</p>
